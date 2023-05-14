@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Stats from './components/Stats';
-import Business from './components/Business';
-import Billing from './components/Billing';
-import CardDeal from './components/CardDeal';
-import Testimonials from './components/Testimonials';
-import CTA from './components/CTA';
-import Footer from './components/Footer';
-import ScrollToTopButton from './components/ScrollToTopButton';
+const LazyComponent1 = lazy(() => import('./components/Hero'));
+const LazyComponent2 = lazy(() => import('./components/Stats'));
+const LazyComponent3 = lazy(() => import('./components/Business'));
+const LazyComponent4 = lazy(() => import('./components/Billing'));
+const LazyComponent5 = lazy(() => import('./components/CardDeal'));
+const LazyComponent6 = lazy(() => import('./components/Testimonials'));
+const LazyComponent7 = lazy(() => import('./components/CTA'));
+const LazyComponent8 = lazy(() => import('./components/Footer'));
+const LazyComponent9 = lazy(() => import('./components/ScrollToTopButton'));
+
+
 
 
 
@@ -20,15 +22,17 @@ function App() {
   return(
     <div className="bg-primary w-full overflow-hidden z-10">
       <Navbar />
-      <Hero />
-      <Stats />
-      <Business />
-      <Billing />
-      <CardDeal />
-      <Testimonials />
-      <CTA />
-      <Footer />
-      <ScrollToTopButton />
+      <Suspense fallback={<div>Loading...</div>}>
+        <LazyComponent1 />
+        <LazyComponent2 />
+        <LazyComponent3 />
+        <LazyComponent4 />
+        <LazyComponent5 />
+        <LazyComponent6 />
+        <LazyComponent7 />
+        <LazyComponent8 />
+        <LazyComponent9 />
+      </Suspense>
     </div>
     
   )
